@@ -4,9 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "//jscs": "jscs index.js",
+    "//jshint": "jshint .",
+    "//test": "mocha tests --recursive --watch",
+    "start": "node index.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "//pre-commit": [
+    "jshint",
+    "jscs"
+  ],
+  "devDependencies": {
+    "chai": "^4.1.1",
+    "jscs": "^3.0.7",
+    "jshint": "^2.9.5",
+    "mocha": "^3.5.0",
+    "pre-commit": "^1.2.2"
+  }
 }

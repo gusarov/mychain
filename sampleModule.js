@@ -1,4 +1,7 @@
+"use strict";
+
 // Private variable
+
 var total = 0;
 
 // Constructor

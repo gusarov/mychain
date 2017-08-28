@@ -1,4 +1,8 @@
+"use strict";
+
+return;
 //console.log('My Chain Started');
+
 
 var object = {
     
