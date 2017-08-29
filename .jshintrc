@@ -1,4 +1,6 @@
 {
 	"strict": "global",
+	"node": true,
+	"moz": true,
 	"devel": true
 }
