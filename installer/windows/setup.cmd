@@ -9,7 +9,7 @@ cd /d %~dp0
 
 :: create windows service if it is not exists yet
 sc query MyChain
-if errorlevel 1 sc create MyChain binPath= "%bin%node.exe app.js" start= delayed-auto obj= "NT Service\MyChain"
+if errorlevel 1 sc create MyChain binPath= "%bin%nssm.exe" start= delayed-auto obj= "NT Service\MyChain"
 :: DisplayName= "Blockchain (MyChain)" error= ignore
 
 :: configure service description
@@ -17,6 +17,11 @@ sc description MyChain "Independent Blockchain Research Project"
 
 :: configure automatic failure recovery
 sc failure MyChain reset= 0 actions= restart/60000
+
+set regpath=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MyChain\Parameters\
+reg add %regpath% /v AppDirectory /t REG_SZ /d "%~dp0\" /f
+reg add %regpath% /v Application /t REG_SZ /d "node.exe" /f 
+reg add %regpath% /v AppParameters /t REG_SZ /d "app.js" /f
 
 :: grant service account full permission to folder to support automatic updates (can be disabled for better security)
 icacls . /grant "NT Service\MyChain":(OI)(CI)F /T
