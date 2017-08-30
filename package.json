@@ -6,7 +6,7 @@
   "scripts": {
     "//jscs": "jscs index.js",
     "jshint": "jshint .",
-    "test": "mocha tests --recursive",
+    "//test": "mocha tests --recursive",
     "start": "node index.js"
   },
   "author": "",
