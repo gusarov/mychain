@@ -37,7 +37,7 @@ set WinRar=..\winrar.exe
 if "%WinRar%"=="" echo WinRar not found & exit 1
 :: echo %winrar%
 
-del Setup.exe
+if exist Setup.exe del Setup.exe
 "%winrar%" a -sfx Setup -cfg- -iadm -iicon"..\..\chain.ico" -k -ma5 -r -ri15 -z"..\script.txt"
 :: -iimgLogo.png -s -s1 -s2
 

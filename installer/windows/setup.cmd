@@ -2,7 +2,8 @@ set bin=%~dp0
 cd /d %~dp0
 
 :: install mychain sources from package manager
-call npm install mychain
+:: This is removed, because default setup.exe must bring all the files
+:: call npm install mychain
 
 :: sc delete MyChain
 
