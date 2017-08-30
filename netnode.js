@@ -11,7 +11,7 @@ class NetNode {
 
 	start() {
 		this.server = net.createServer();
-		this.server.listen(port == null ? 7770 : port);
+		this.server.listen(this.port == null ? 7770 : this.port);
 		this.server.on('connection', function(socket) {
 			socket = new JsonSocket(socket);
 			socket.on('message', function(message) {
