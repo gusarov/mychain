@@ -25,5 +25,13 @@
   },
   "dependencies": {
     "json-socket": "^0.3.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gusarov/mychain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gusarov/mychain/issues"
+  },
+  "homepage": "https://github.com/gusarov/mychain#readme"
 }
