@@ -1,4 +1,8 @@
 set bin=%~dp0
+cd /d %~dp0
+
+:: install mychain sources from package manager
+call npm install mychain
 
 :: sc delete MyChain
 
@@ -13,8 +17,11 @@ sc description MyChain "Independent Blockchain Research Project"
 :: configure automatic failure recovery
 sc failure MyChain reset= 0 actions= restart/60000
 
+:: grant service account full permission to folder to support automatic updates (can be disabled for better security)
+icacls . /grant "NT Service\MyChain":(OI)(CI)F /T
+
 :: start the service
 net start MyChain
 
 :: open welcoming page in the browser
-if errorlevel 0 start http://127.0.0.1:7770/installed
+if %errorlevel%==0 start http://127.0.0.1:7770/installed

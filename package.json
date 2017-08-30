@@ -1,12 +1,13 @@
 {
   "name": "mychain",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "//jscs": "jscs index.js",
     "jshint": "jshint .",
     "//test": "mocha tests --recursive",
+    "installer": "installer/windows/compile.cmd",
     "start": "node index.js"
   },
   "author": "",
