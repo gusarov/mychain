@@ -1,3 +1,5 @@
+installer/windows/out/
+
 # Logs
 logs
 *.log
