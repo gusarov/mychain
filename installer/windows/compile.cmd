@@ -19,15 +19,15 @@ xcopy /q /y /r /d ..\setup.cmd .
 xcopy /q /y /r /d ..\..\..\*.* /exclude:..\excludes.txt+..\..\..\.gitignore
 
 :: fetch npm module itself
-call npm install npm
+call npm install npm --production
 
 :: fetch other production modules
-call npm install
+call npm install --production
 
 :: fetch npm.cmd
-where npm.cmd > %tmp%\npmlocation
-set /p npmlocation= < %tmp%\npmlocation
-xcopy /d "%npmlocation%" .
+:: where npm.cmd > %tmp%\npmlocation
+:: set /p npmlocation= < %tmp%\npmlocation
+:: xcopy /d "%npmlocation%" .
 
 :: find winrar
 ::if exist "%ProgramFiles%\WinRar\WinRar.exe" set winrar=%ProgramFiles%\WinRar\WinRar.exe

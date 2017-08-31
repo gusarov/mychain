@@ -2,13 +2,13 @@
   "name": "mychain",
   "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "//jscs": "jscs index.js",
     "jshint": "jshint .",
     "//test": "mocha tests --recursive",
     "installer": "installer/windows/compile.cmd",
-    "start": "node index.js"
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +24,7 @@
     "pre-commit": "^1.2.2"
   },
   "dependencies": {
+    "express": "^4.15.4",
     "json-socket": "^0.3.0"
   },
   "repository": {
