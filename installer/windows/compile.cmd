@@ -16,7 +16,8 @@ xcopy /d "%nodelocation%" .
 xcopy /q /y /r /d ..\setup.cmd .
 
 :: fetch package files
-xcopy /q /y /r /d ..\..\..\*.* /exclude:..\excludes.txt+..\..\..\.gitignore
+xcopy /q /y /r /d ..\nssm.exe .
+xcopy /q /y /r /d ..\..\..\*.* . /exclude:..\excludes.txt+..\..\..\.gitignore
 
 :: fetch npm module itself
 call npm install npm --production
