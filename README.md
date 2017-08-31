@@ -6,3 +6,4 @@ Appveyer build:
 
 [Download Latest for Windows](https://ci.appveyor.com/api/projects/gusarov/mychain/artifacts/installer/windows/out/Setup.exe)
 
+
