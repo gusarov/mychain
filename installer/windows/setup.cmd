@@ -1,33 +1,31 @@
 set bin=%~dp0
 cd /d %~dp0
 
-:: install mychain sources from package manager
-:: This is removed, because default setup.exe must bring all the files
-:: call npm install mychain
+set s=MyChain
 
 :: sc delete MyChain
 
 :: create windows service if it is not exists yet
-sc query MyChain
-if errorlevel 1 sc create MyChain binPath= "%bin%nssm.exe" start= delayed-auto obj= "NT Service\MyChain"
-:: DisplayName= "Blockchain (MyChain)" error= ignore
+sc query %s%
+if errorlevel 1 sc create %s% binPath= "%bin%nssm.exe" start= delayed-auto obj= "NT Service\%s%"
+:: DisplayName= "Blockchain (%s%)" error= ignore
 
 :: configure service description
-sc description MyChain "Independent Blockchain Research Project"
+sc description %s% "Independent Blockchain Research Project"
 
 :: configure automatic failure recovery
-sc failure MyChain reset= 0 actions= restart/60000
+sc failure %s% reset= 0 actions= restart/60000
 
-set regpath=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\MyChain\Parameters\
-reg add %regpath% /v AppDirectory /t REG_SZ /d "%~dp0\" /f
-reg add %regpath% /v Application /t REG_SZ /d "node.exe" /f 
-reg add %regpath% /v AppParameters /t REG_SZ /d "app.js" /f
+set r=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\%s%\Parameters\
+reg add %r% /v AppDirectory /t REG_SZ /d "%~dp0\" /f
+reg add %r% /v Application /t REG_SZ /d "node.exe" /f
+reg add %r% /v AppParameters /t REG_SZ /d "app.js" /f
 
 :: grant service account full permission to folder to support automatic updates (can be disabled for better security)
-icacls . /grant "NT Service\MyChain":(OI)(CI)F /T
+icacls . /grant "NT Service\%s%":(OI)(CI)F /T
 
 :: start the service
-net start MyChain
+net start %s%
 
 :: open welcoming page in the browser
-if %errorlevel%==0 start http://127.0.0.1:7770/installed
+if %errorlevel%==0 start http://127.0.0.1:7770/welcome.htm
