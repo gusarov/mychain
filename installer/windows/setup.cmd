@@ -22,7 +22,7 @@ reg add %r% /v Application /t REG_SZ /d "node.exe" /f
 reg add %r% /v AppParameters /t REG_SZ /d "app.js" /f
 
 :: grant service account full permission to folder to support automatic updates (can be disabled for better security)
-icacls . /grant "NT Service\%s%":(OI)(CI)F /T
+icacls . /grant "NT Service\%s%":(OI)(CI)F
 
 :: start the service
 net start %s%
