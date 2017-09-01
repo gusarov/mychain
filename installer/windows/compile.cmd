@@ -7,8 +7,6 @@ if exist %windir%\qq echo Adm Mark Created
 :: test appveyer admin isolation
 sc create test binpath= notepad
 if errorlevel 1 exit 1
-net start test
-if errorlevel 1 exit 1
 
 :: goto current script location
 set orig=%cd%
