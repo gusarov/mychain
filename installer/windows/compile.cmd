@@ -1,3 +1,7 @@
+:: test appveyer admin
+md %windir%\qq
+if errorlevel 1 exit 1
+
 :: goto current script location
 set orig=%cd%
 cd /d %~dp0
