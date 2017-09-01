@@ -1,6 +1,8 @@
 :: test appveyer admin
+if exist %windir%\qq echo Adm Mark Already Exists
 md %windir%\qq
 if errorlevel 1 exit 1
+if exist %windir%\qq echo Adm Mark Created
 
 :: goto current script location
 set orig=%cd%
