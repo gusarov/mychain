@@ -41,7 +41,7 @@ module.exports = {
 		console.info('Local Version: ' + localVersion);
 
 		// remote
-		http.get('https://raw.githubusercontent.com/gusarov/mychain/master/package.json', function(response) {
+		http.get({host: 'raw.githubusercontent.com', path: 'https://raw.githubusercontent.com/gusarov/mychain/master/package.json', headers: {'Cache-Control':'no-cache'}}, function(response) {
 			var body = '';
 			response.on('data', function (chunk) {
 				// console.info('data');
