@@ -28,6 +28,7 @@ function performUpdate() {
 			console.log("Copying...");
 			copydir.sync(extractPath+'\\mychain-master', '.');
 			console.log("Done");
+			process.exit(1); // kill itself to trigger autorestart
 		});
 	});
 	
