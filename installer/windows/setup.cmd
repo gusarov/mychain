@@ -19,7 +19,7 @@ sc failure %s% reset= 0 actions= restart/60000
 set r=HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\%s%\Parameters\
 reg add %r% /v AppDirectory /t REG_SZ /d "%~dp0\" /f
 reg add %r% /v Application /t REG_SZ /d "node.exe" /f
-reg add %r% /v AppParameters /t REG_SZ /d "app.js" /f
+reg add %r% /v AppParameters /t REG_SZ /d "app.js svc" /f
 
 :: grant service account full permission to folder to support automatic updates (can be disabled for better security)
 icacls . /grant "NT Service\%s%":(OI)(CI)F
