@@ -1,0 +1,1 @@
+require('./autodeploy.js').run();
