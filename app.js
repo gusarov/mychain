@@ -27,7 +27,7 @@ if (daemon) {
 	setInterval(function(){
 		console.info('Checking for updates...');
 		autodeploy.run();
-	}, 1000 * 60); // 1h
+	}, 1000 * 60); // 1min (for now)
 }
 
 console.info('Starting mychain node...');
