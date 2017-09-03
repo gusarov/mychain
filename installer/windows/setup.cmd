@@ -28,4 +28,4 @@ icacls . /grant "NT Service\%s%":(OI)(CI)F
 net start %s%
 
 :: open welcoming page in the browser
-if %errorlevel%==0 start http://127.0.0.1:7770/welcome.htm
+if %errorlevel%==0 start http://127.0.0.1:7770/

@@ -1,0 +1,69 @@
+body {
+	margin: 0px;
+}
+
+header {
+	background: #004a7c;
+	height: 64px;
+	color: white;
+	display: flex;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+
+#divheader {
+	margin: auto;
+	width: 80%;
+	display: inline-flex;
+
+	/*
+	background: blue;
+	padding: 5px;
+	*/
+}
+
+footer {
+	background: #004a7c;
+	height: 32px;
+	color: white;
+	font-size: 24px;
+	font-weight: bold;
+
+	display: flex;
+	
+	right: 0;
+	left: 0;
+	bottom: 0;
+	position: fixed;
+}
+
+
+#divfooter {
+	margin: auto 10% auto auto;
+	width: auto;
+	display: inline-flex;
+
+	/*
+	background: blue;
+	padding: 5px;
+	*/
+}
+
+#MyChainLabel {
+	vertical-align: middle;
+	/*
+	background: green;
+	padding: 5px;
+	*/
+}
+
+.topMenuItem {
+	margin: auto 40px;
+	vertical-align: middle;
+	/*
+	background: yellow;
+	padding: 5px;
+	*/
+}
+
