@@ -52,6 +52,7 @@ footer {
 
 #MyChainLabel {
 	vertical-align: middle;
+	margin: auto 40px auto 0;
 	/*
 	background: green;
 	padding: 5px;
@@ -67,3 +68,22 @@ footer {
 	*/
 }
 
+a:link
+{
+	color: white;
+}
+
+a:hover
+{
+	color: white;
+}
+
+a:active
+{
+	color: white;
+}
+
+a:visited
+{
+	color: white;
+}
