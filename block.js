@@ -3,27 +3,51 @@
 const assert = require('assert');
 // var CryptoJS = require("crypto-js");
 const crypto = require('crypto');
-const sha256 = crypto.createHash('sha256');
 
 class Block {
-	constructor(chain, previousHash, timestamp, data) {
-		assert.equal(chain.constructor, Buffer);
-		assert.equal(previousHash.constructor, Buffer);
-		assert(timestamp instanceof Date);
+	constructor(
+		  chain // 2 (0-2)
+		, previousHash // 20 (2-22)
+		, timestamp // 4 (22-26)
+		, data // N (26-)
+	) {
+		if (typeof data == 'string') {
+			data = new Buffer(data);
+		}
+
+		assert.equal(typeof chain, 'number', 'chain');
+		assert.equal(previousHash.constructor, Buffer, 'previousHash');
+		assert(timestamp instanceof Date, 'timestamp');
+
+		assert.equal(data.constructor, Buffer, 'data');
+
 		// DATA
 		this.chain = chain; // the chain id bytes
 		this.previousHash = previousHash;
 		this.timestamp = timestamp;
 		this.data = data;
-		
+
 		// TEMP
 		this.hash = null;
+		this.buffer = Buffer.allocUnsafe(26 + data.byteLength, 0);
+		this.buffer.writeUInt16BE(this.chain, 0); // 2
+		this.previousHash.copy(this.buffer, 2, 0, 20); // 20
+		this.buffer.writeUInt32BE(this.timestamp.getDate() / 1000, 22); // 4 bytes - UInt32 Unix Time (1970-2106 years)
+		this.data.copy(this.buffer, 26);
 	}
 
-	getHash () {
-		if (this.hash === null) {
-			// Buffer
-			// this.hash = new Int8Array(sha256(this.previousHash + this.timestamp + this.data));
+	getBuffer (unsafe) {
+		if (unsafe) {
+			return this.buffer;
+		}
+		return new Buffer(this.buffer);
+	}
+
+	getHash (forceUpdate) {
+		if (this.hash === null || forceUpdate) {
+			var hashing = crypto.createHash('sha256');
+			hashing.update(this.buffer);
+			this.hash = hashing.digest();
 		}
 		return this.hash;
 	}
@@ -34,17 +58,18 @@ Block.generateNextBlock = (chain, prevBlockHash, newBlockData) => {
 	return new Block(chain, prevBlockHash, ts, newBlockData);
 };
 
-Block.chainMaster = new Buffer([0xd6,0x2f]);
-Block.chainAnarchy = new Buffer([0x8f,0xbf]);
-Block.chainPow = new Buffer([0xc5,0xde]);
+Block.chainMaster = 0xd62f;
+Block.chainAnarchy = 0x8fbf;
+Block.chainPow = 0xc5de;
+Block.zeroHash = Buffer.alloc(20);
 
 Block.getGenesisBlock = (chainCode) => {
-	switch(chainCode){
-		case 'master': return new Block(Block.chainMaster, new Buffer(20), new Date('2017-09-03T14:28:00.000Z'), 'init');
-		case 'anarchy': return new Block(Block.chainAnarchy, new Buffer(20), new Date('2017-09-03T14:28:00.000Z'), 'init');
-		case 'pow': return new Block(Block.chainPow, new Buffer(20), new Date('2017-09-03T14:28:00.000Z'), 'init');
+	switch (chainCode) {
+		case 'master': return new Block(Block.chainMaster, Block.zeroHash, new Date('2017-09-03T14:28:00.000Z'), 'init');
+		case 'anarchy': return new Block(Block.chainAnarchy, Block.zeroHash, new Date('2017-09-03T14:28:00.000Z'), 'init');
+		case 'pow': return new Block(Block.chainPow, Block.zeroHash, new Date('2017-09-03T14:28:00.000Z'), 'init');
 	}
-	throw 'wrong chain code';
+	return null; // unknown chain
 };
 
 module.exports = {

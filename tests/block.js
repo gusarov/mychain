@@ -34,9 +34,8 @@ describe("Block Basics", function() {
 		var gen = block.Block.getGenesisBlock('master');
 		assert(gen instanceof block.Block);
 
-		assert.equal(gen.chain.constructor, Buffer);
-		assert.equal(gen.chain[0], 0xd6);
-		assert.equal(gen.chain[1], 0x2f);
+		assert.equal(typeof gen.chain, 'number');
+		assert.equal(gen.chain, 0xd62f, 'magic');
 
 		assert.equal(gen.previousHash.constructor, Buffer);
 		assert.equal(gen.previousHash.byteLength, 20);
@@ -50,13 +49,9 @@ describe("Block Basics", function() {
 	it('Block should have hash', function() {
 		var gen = block.Block.getGenesisBlock('master');
 		var hash = gen.getHash();
-		// assert(hash instanceof Buffer, 'hash instanceof Int8Array');
-		// assert.notEqual(hash, Buffer.alloc(20, '0101010101010101010101010101010101010101010101010101010101010101', 'hex'));
-		// assert.equal(hash, Buffer.alloc(20, 'c6bed51bb1ee13c1fa4d6c93699362928dfab33bde7340022697d619765c5f60', 'hex'));
+		assert(hash instanceof Buffer, 'hash instanceof Buffer');
+		assert.notEqual(hash.toString('hex'), '0101010101010101010101010101010101010101010101010101010101010101');
+		assert.notEqual(hash.toString('hex'), '0000000000000000000000000000000000000000000000000000000000000000');
+		assert.equal(hash.toString('hex'), '6999f94546ec2b1a9068ed3808e1e31f2de0109f87b198903575c523cba8eeee');
 	});
-	/*
-	it('Next Block should have hash in the body', function() {
-		assert.fail();
-	});
-	*/
 });
