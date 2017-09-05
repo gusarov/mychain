@@ -20,8 +20,8 @@ xcopy /q /y /r /d ..\nssm.exe .
 xcopy /q /y /r /d ..\..\..\*.* . /exclude:..\excludes.txt+..\..\..\.gitignore
 xcopy /q /y /r /d /e /i ..\..\..\public .\public /exclude:..\excludes.txt+..\..\..\.gitignore
 
-:: fetch npm module itself
-call npm install npm --production
+:: fetch npm module itself (now dependency)
+:: call npm install npm --production
 
 :: fetch other production modules
 call npm install --production

@@ -28,6 +28,8 @@ function performUpdate() {
 			console.log("Copying...");
 			copydir.sync(extractPath+'\\mychain-master', '.');
 			console.log("Done");
+			var p = require('child_process').spawnSync('node_modules\\.bin\\npm.cmd', ['install', '--production']);
+			console.log("Done: " + p.stdout + p.stderr);
 			process.exit(1); // kill itself to trigger autorestart
 		});
 	});
