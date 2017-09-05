@@ -2,7 +2,7 @@
 
 var net = require('net');
 var express = require('express');
-var Dao = require('./localDao').Dao;
+//var Dao = require('./localDao').Dao;
 
 //var JsonSocket = require('json-socket');
 
@@ -10,7 +10,7 @@ class NetNode {
 	constructor(port) {
 		this.port = port != null ? port : (process.env.PORT != null ? process.env.PORT : 7770);
 		this.server = null;
-		this.dao = new Dao();
+		//this.dao = new Dao();
 	}
 
 	start() {
